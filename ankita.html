@@ -83,7 +83,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="content" style="display:none;">
         <h1>✨ Hey Ankita!</h1>
         <p class="greeting">Here's something special for you...</p>
         
@@ -105,5 +105,39 @@
             Choose Your Gift 🎁
         </a>
     </div>
+    <script>
+    (function(){
+      const NAME = 'Ankita';
+      const PASS = 'lalitmahal';
+      const KEY = 'auth_' + NAME;
+      const el = document.getElementById('content');
+      if (sessionStorage.getItem(KEY) === 'true') {
+        if (el) el.style.display = '';
+        return;
+      }
+      const p = prompt('Enter passcode for ' + NAME + ':');
+      if (p === PASS) {
+        sessionStorage.setItem(KEY, 'true');
+        if (el) el.style.display = '';
+        return;
+      }
+      document.documentElement.innerHTML = '';
+      const d = document.createElement('div');
+      Object.assign(d.style, {
+        fontFamily: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif",
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        color: "#fff",
+        padding: "20px",
+        textAlign: "center"
+      });
+      d.innerHTML = '<div style="max-width:600px;background:rgba(0,0,0,0.22);padding:30px;border-radius:12px;"><h2>Access denied</h2><p>Redirecting...</p></div>';
+      document.body.appendChild(d);
+      setTimeout(()=> location.href = 'index.html', 1400);
+    })();
+    </script>
 </body>
 </html>
