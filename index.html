@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gift Card Selection</title>
+    <title>Welcome!</title>
     <style>
         * {
             margin: 0;
@@ -24,269 +24,79 @@
         .container {
             background: white;
             border-radius: 20px;
-            padding: 40px;
+            padding: 50px 40px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             max-width: 500px;
             width: 100%;
+            text-align: center;
         }
 
         h1 {
             color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-            text-align: center;
+            margin-bottom: 15px;
+            font-size: 32px;
         }
 
         .subtitle {
             color: #666;
-            margin-bottom: 30px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            margin-bottom: 40px;
             font-size: 16px;
-            background-color: white;
-            cursor: pointer;
-            transition: border-color 0.3s;
+            line-height: 1.6;
         }
 
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .gift-cards {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .gift-card {
-            border: 3px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: #f9f9f9;
-        }
-
-        .gift-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .gift-card.selected {
-            border-color: #667eea;
-            background: #f0f4ff;
-        }
-
-        .gift-card input[type="radio"] {
-            margin-right: 10px;
-        }
-
-        .gift-card label {
-            cursor: pointer;
+        .name-buttons {
             display: flex;
-            align-items: center;
-            margin: 0;
-            font-size: 16px;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        button {
-            width: 100%;
-            padding: 15px;
+        .name-button {
+            padding: 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 18px;
+            border-radius: 12px;
+            font-size: 20px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
         }
 
-        button:hover {
-            transform: translateY(-2px);
+        .name-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
 
-        button:active {
-            transform: translateY(0);
+        .name-button:active {
+            transform: translateY(-1px);
         }
 
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .success-message {
-            display: none;
-            background: #4caf50;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 20px;
-            font-weight: 600;
-        }
-
-        .error-message {
-            display: none;
-            background: #f44336;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 20px;
-            font-weight: 600;
+        .emoji {
+            font-size: 28px;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎁 Choose Your Gift Card</h1>
-        <p class="subtitle">Select your name and pick your preferred gift card</p>
+        <h1>🎁 Welcome!</h1>
+        <p class="subtitle">
+            Select your name to continue
+        </p>
         
-        <form id="giftForm" action="https://formspree.io/f/mnjjvnpy" method="POST">
-            <div class="form-group">
-                <label for="name">Your Name</label>
-                <select id="name" name="name" required>
-                    <option value="">-- Select Your Name --</option>
-                    <option value="Ankita Malve">Ankita Malve</option>
-                    <option value="Ankush Kawalkar">Ankush Kawalkar</option>
-                    <option value="Rohit Jain">Rohit Jain</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Choose Your Gift Card</label>
-                <div class="gift-cards">
-                    <div class="gift-card" onclick="selectCard(this, 'steam')">
-                        <label>
-                            <input type="radio" name="giftcard" value="Steam Card" required>
-                            <span>🎮 Steam Card</span>
-                        </label>
-                    </div>
-                    <div class="gift-card" onclick="selectCard(this, 'amazon')">
-                        <label>
-                            <input type="radio" name="giftcard" value="Amazon Gift Card" required>
-                            <span>📦 Amazon Gift Card</span>
-                        </label>
-                    </div>
-                    <div class="gift-card" onclick="selectCard(this, 'myntra')">
-                        <label>
-                            <input type="radio" name="giftcard" value="Myntra Gift Card" required>
-                            <span>👕 Myntra Gift Card</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <button type="submit" id="submitBtn">Submit My Choice</button>
-        </form>
-
-        <div class="success-message" id="successMessage">
-            ✅ Your selection has been sent successfully!
-        </div>
-        <div class="error-message" id="errorMessage">
-            ❌ Something went wrong. Please try again.
+        <div class="name-buttons">
+            <a href="ankita.html" class="name-button">
+                <span class="emoji">✨</span>Ankita Malve
+            </a>
+            <a href="ankush.html" class="name-button">
+                <span class="emoji">🎯</span>Ankush Kawalkar
+            </a>
+            <a href="rohit.html" class="name-button">
+                <span class="emoji">🚀</span>Rohit Jain
+            </a>
         </div>
     </div>
-
-    <script>
-        // Check if user has already submitted on page load
-        window.addEventListener('DOMContentLoaded', function() {
-            const hasSubmitted = localStorage.getItem('giftCardSubmitted');
-            const submittedName = localStorage.getItem('submittedName');
-            
-            if (hasSubmitted) {
-                showAlreadySubmitted(submittedName);
-            }
-        });
-
-        function showAlreadySubmitted(name) {
-            const container = document.querySelector('.container');
-            container.innerHTML = `
-                <div style="text-align: center;">
-                    <h1 style="color: #667eea; margin-bottom: 20px;">✅ Already Submitted</h1>
-                    <p style="color: #666; font-size: 16px; line-height: 1.6;">
-                        ${name ? `<strong>${name}</strong> has` : 'You have'} already submitted a gift card selection.
-                    </p>
-                    <p style="color: #666; font-size: 14px; margin-top: 20px;">
-                        Only one submission per person is allowed.
-                    </p>
-                </div>
-            `;
-        }
-
-        function selectCard(card, type) {
-            document.querySelectorAll('.gift-card').forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-            card.querySelector('input[type="radio"]').checked = true;
-        }
-
-        document.getElementById('giftForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
-            const selectedName = document.getElementById('name').value;
-            
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            
-            const formData = new FormData(this);
-            
-            try {
-                const response = await fetch(this.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    // Store submission in localStorage
-                    localStorage.setItem('giftCardSubmitted', 'true');
-                    localStorage.setItem('submittedName', selectedName);
-                    
-                    successMessage.style.display = 'block';
-                    errorMessage.style.display = 'none';
-                    this.reset();
-                    document.querySelectorAll('.gift-card').forEach(c => c.classList.remove('selected'));
-                    
-                    // Disable form after successful submission
-                    setTimeout(() => {
-                        showAlreadySubmitted(selectedName);
-                    }, 2000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            } catch (error) {
-                errorMessage.style.display = 'block';
-                successMessage.style.display = 'none';
-                submitBtn.textContent = 'Submit My Choice';
-                submitBtn.disabled = false;
-            }
-        });
-    </script>
 </body>
 </html>
